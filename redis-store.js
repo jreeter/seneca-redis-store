@@ -304,6 +304,7 @@ module.exports = function (opts) {
       else if (!_.isEmpty(q)) {
         store.list(args, function (err, elements) {
           if (err) return cb(err)
+          if (elements.length === 0) return cb(null, null)
           var redisArgs = _.map(elements, 'id')
           redisArgs.unshift(table)
 
